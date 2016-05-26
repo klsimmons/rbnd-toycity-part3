@@ -5,6 +5,8 @@ class Customer
 
   def initialize(options={})
     @name = options[:name]
+    @purchase_count = 0
+    @money_spent = 0
     add_to_customers
   end
 
@@ -20,12 +22,18 @@ class Customer
     end
   end
 
-  def purchase(product)
+  def purchase(product, count = 1)
     if product.stock == 0
       raise OutOfStockError, "'#{product.title}' is out of stock."
     else
       Transaction.new(@customer, product)
+      @purchase_count += 1
+      @money_spent += product.price * count
     end
+  end
+
+  def total_purchases
+    puts "#{@name} has made #{@purchase_count} purchases and spent $#{@money_spent}."
   end
 
   private

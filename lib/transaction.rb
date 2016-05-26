@@ -3,12 +3,12 @@ class Transaction
 
   @@transactions = []
 
-  def initialize(customer, product)
+  def initialize(customer, product, count = 1)
     @customer = customer
     @product = product
     @@transactions << self
     @id = @@transactions.index(self) + 1
-    @product.stock -= 1
+    @product.stock -= count
   end
 
   def self.all
@@ -22,6 +22,4 @@ class Transaction
       end
     end
   end
-
-
 end
