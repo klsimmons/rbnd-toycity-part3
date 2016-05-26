@@ -16,10 +16,6 @@ class Transaction
   end
 
   def self.find(id)
-    @@transactions.each do |transaction|
-      if transaction.id == id
-        return transaction
-      end
-    end
+    @@transactions.each { |transaction| transaction if transaction.id == id }
   end
 end

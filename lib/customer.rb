@@ -15,21 +15,16 @@ class Customer
   end
 
   def self.find_by_name(name)
-    @@customers.each do |customer|
-      if customer.name == name
-        return customer
-      end
-    end
+    @@customers.each  { |customer| return customer if customer.name == name }
   end
 
   def purchase(product, count = 1)
     if product.stock == 0
       raise OutOfStockError, "'#{product.title}' is out of stock."
-    else
-      Transaction.new(@customer, product)
-      @purchase_count += 1
-      @money_spent += product.price * count
     end
+    Transaction.new(@customer, product)
+    @purchase_count += 1
+    @money_spent += product.price * count
   end
 
   def total_purchases
@@ -41,8 +36,7 @@ class Customer
   def add_to_customers
     if @@customers.map { |customer| customer.name }.include?(@name)
       raise DuplicateCustomerError, "'#{@name}' already exists."
-    else
-      @@customers << self
     end
+    @@customers << self
   end
 end

@@ -15,11 +15,7 @@ class Product
   end
 
   def self.find_by_title(title)
-    @@products.each do |product|
-      if product.title == title
-        return product
-      end
-    end
+    @@products.each { |product| return product if product.title == title }
   end
 
   def in_stock?
@@ -35,9 +31,8 @@ class Product
   def add_to_products
     if @@products.select { |product| product.title == @title }.size > 0
       raise DuplicateProductError, "'#{@title}' already exists."
-    else
-      @@products << self
     end
+    @@products << self
   end
 
 

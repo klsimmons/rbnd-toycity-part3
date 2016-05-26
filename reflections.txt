@@ -1,4 +1,15 @@
 How long did you spend working on this project?
+
+It's taken me about two days.
+
 What was the most rewarding challenge you conquered?
+
+Getting the Transaction class to work, because the interaction between multiple classes is still difficult for me to put into practice.
+
 What two additional features did you build? Why?
+
+I added a total_purchases method that outputs how many purchases a customer has made and how much money they've spent, which could be used to implement some kind of customer loyalty program in the future. I also added the ability to buy different quantities of a product in a single transaction to make purchasing easier.
+
 Where do you still have room to grow?
+
+I still have a lot of growth to do with understanding programming logic (especially with OOP) and with learning to make the most of the tools available.
