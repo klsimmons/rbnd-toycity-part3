@@ -15,16 +15,13 @@ class Customer
   end
 
   def self.find_by_name(name)
-    @@customers.each  { |customer| return customer if customer.name == name }
+    @@customers.find  { |customer| customer.name == name }
   end
 
   def purchase(product, count = 1)
-    if product.stock == 0
-      raise OutOfStockError, "'#{product.title}' is out of stock."
-    end
-    Transaction.new(@customer, product)
     @purchase_count += 1
     @money_spent += product.price * count
+    Transaction.new(@customer, product)
   end
 
   def total_purchases
