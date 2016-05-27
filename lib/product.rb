@@ -1,6 +1,5 @@
 class Product
-  attr_reader :title, :price
-  attr_accessor :stock
+  attr_reader :title, :price, :stock
   @@products = []
 
   def initialize(options={})
@@ -26,6 +25,13 @@ class Product
     @@products.select { |product| product.in_stock? }
   end
 
+  def deplete_stock count=1
+    if @stock < count
+      raise OutOfStockError, "#{self.title} doesn't have enough stock!"
+    end
+    @stock -= count
+  end
+
   private
 
   def add_to_products
@@ -34,6 +40,4 @@ class Product
     end
     @@products << self
   end
-
-
 end

@@ -8,7 +8,7 @@ class Transaction
     @product = product
     add_to_transactions
     @id = @@transactions.index(self) + 1
-    @product.stock -= count
+    @product.deplete_stock(count)
   end
 
   def self.all

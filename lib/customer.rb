@@ -21,7 +21,7 @@ class Customer
   def purchase(product, count = 1)
     @purchase_count += 1
     @money_spent += product.price * count
-    Transaction.new(@customer, product)
+    Transaction.new(@customer, product, count)
   end
 
   def total_purchases
